@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Encryption Time Comparison - AES vs DES</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+            background-color: #f0f4f8;
+        }
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #chart-container {
+            max-width: 750px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        canvas {
+            margin-top: 20px;
+        }
+        p.explanation {
+            font-style: italic;
+            color: #555;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .nav-buttons {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .nav-buttons button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 6px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .nav-buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="chart-container">
+        <h2>⚡ AES vs DES - Encryption Time (ms)</h2>
+        <canvas id="barChart" width="600" height="300"></canvas>
+        <p class="explanation">
+            DES may show faster encryption due to its simpler structure, but AES is far more secure and scalable for modern needs.
+        </p>
+
+        <div class="nav-buttons">
+            <button onclick="window.location.href='{{ url_for('steps') }}'">🔙 Back to Steps</button>
+            <button onclick="window.location.href='{{ url_for('index') }}'">🔄 Start Over</button>
+        </div>
+        <div style="text-align:center; margin-top: 15px;">
+            <p><strong>AES Encryption Time:</strong> {{ aes_time }} ms</p>
+            <p><strong>DES Encryption Time:</strong> {{ des_time }} ms</p>
+         </div>
+
+    </div>
+
+    <script>
+        const aesTime = {{ aes_time | default(0) | tojson | safe }};
+        const desTime = {{ des_time | default(0) | tojson | safe }};
+
+        const ctx = document.getElementById('barChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['AES', 'DES'],
+                datasets: [{
+                    label: 'Encryption Time (ms)',
+                    data: [aesTime, desTime],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 99, 132, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1,
+                    barThickness: 60
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Encryption Time Comparison',
+                        font: {
+                            size: 20
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Time (ms)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html> 

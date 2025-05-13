@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Benchmark: AES vs DES Encryption</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 40px;
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        p.description {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 16px;
+            color: #555;
+        }
+        img {
+            border: 2px solid #ccc;
+            margin-top: 20px;
+            max-width: 90%;
+            height: auto;
+        }
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+        a:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>🔎 AES vs DES: Encryption Time vs Message Size</h2>
+    <p class="description">
+        This benchmark compares encryption speed for AES and DES over varying message sizes (from 16 bytes to 8KB).
+        These are averaged or instantaneous measurements taken separately from the actual encryption steps performed earlier.
+    </p>
+    <img src="data:image/png;base64,{{ graph_image }}" alt="Benchmark Graph">
+    <br>
+    <a href="{{ url_for('steps') }}">⬅ Back to Steps</a>
+</body>
+</html>

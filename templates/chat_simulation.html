@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Message Simulation - AES vs DES</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .original-message {
+            background-color: #fff3cd;
+            padding: 15px 20px;
+            border-left: 6px solid #ffc107;
+            border-radius: 8px;
+            margin: auto;
+            max-width: 750px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .simulation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .algo-box {
+            flex: 1 1 45%;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            min-width: 300px;
+        }
+
+        .algo-box h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        p {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            word-break: break-word;
+        }
+
+        .nav-buttons {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .nav-buttons a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .simulation {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>💬 Chat Message Simulation - AES vs DES</h2>
+
+    
+    <div class="simulation">
+        <div class="algo-box">
+            <h3>🔐 AES</h3>
+            <p><strong>Encrypted:</strong> {{ aes.encrypted }}</p>
+            <p><strong>Decrypted:</strong> {{ aes.decrypted }}</p>
+            <p><strong>Encryption Time:</strong> {{ aes.enc_time }} ms</p>
+        </div>
+
+        <div class="algo-box">
+            <h3>🔒 DES</h3>
+            <p><strong>Encrypted:</strong> {{ des.encrypted }}</p>
+            <p><strong>Decrypted:</strong> {{ des.decrypted }}</p>
+            <p><strong>Encryption Time:</strong> {{ des.enc_time }} ms</p>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="{{ url_for('steps') }}">⬅ Back to Steps</a>
+        <a href="{{ url_for('graph') }}">📊 View Graph</a>
+    </div>
+
+</body>
+</html>
